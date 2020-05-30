@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"></i>
+      Back to Dashboard
+    </a>
+  </div>
+  <div class="col-md-6">
+
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    Edit Client
+  </div>
+  <div class="card-body">
+    <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)" >
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input 
+          type="text"
+          class="form-control"
+          name="firstname"
+          [ngClass]="{'is-valid': clientFirstname.errors && clientFirstname.touched}"
+          #clientFirstname = "ngModel"
+          [(ngModel)]="client.firstname"
+          minlength="3"
+          required
+        >
+        <div class="invalid-feedback" [hidden]="!clientFirstname.errors?.required">
+          First Name is required
+        </div>
+        <div class="invalid-feedback" [hidden]="!clientFirstname.errors?.minlength">
+          Must be at least 3 characters
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input 
+          type="text"
+          class="form-control"
+          name="lastname"
+          [ngClass]="{'is-valid': clientLastname.errors && clientLastname.touched}"
+          #clientLastname = "ngModel"
+          [(ngModel)]="client.lastname"
+          minlength="3"
+          required
+        >
+        <div class="invalid-feedback" [hidden]="!clientLastname.errors?.required">
+          Last Name is required
+        </div>
+        <div class="invalid-feedback" [hidden]="!clientLastname.errors?.minlength">
+          Must be at least 3 characters
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastname">Email</label>
+        <input 
+          type="text"
+          class="form-control"
+          name="email"
+          [ngClass]="{'is-valid': clientEmail.errors && clientEmail.touched}"
+          #clientEmail = "ngModel"
+          [(ngModel)]="client.email"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+          required
+        >
+        <div class="invalid-feedback" [hidden]="!clientEmail.errors?.required">
+          Email is required
+        </div>
+        <div class="invalid-feedback" [hidden]="!clientEmail.errors?.pattern">
+        This Email is invalid
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input 
+          type="text"
+          class="form-control"
+          name="phone"
+          [ngClass]="{'is-valid': clientPhone.errors && clientPhone.touched}"
+          #clientPhone = "ngModel"
+          [(ngModel)]="client.phone"
+          minlength="11"
+          required
+        >
+        <div class="invalid-feedback" [hidden]="!clientPhone.errors?.required">
+          Email is required
+        </div>
+        <div class="invalid-feedback" [hidden]="!clientPhone.errors?.pattern">
+        This Email is invalid
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="balance">Balance</label>
+        <input 
+          type="number"
+          class="form-control"
+          name="balance"
+          [ngClass]="{'is-valid': clientBalance.errors && clientBalance.touched}"
+          #clientBalance = "ngModel"
+          [(ngModel)]="client.balance"
+          minlength="5"
+          required
+        >
+        <div class="invalid-feedback" [hidden]="!clientPhone.errors?.required">
+          Email is required
+        </div>
+        <div class="invalid-feedback" [hidden]="!clientPhone.errors?.pattern">
+        This Email is invalid
+        </div>
+      </div>
+      <input type="submit" [disabled]="!client.firstname && !client.lastname && !client.email && !client.phone" class="btn btn-primary btn-block">
+    </form>
+  </div>
+</div>
